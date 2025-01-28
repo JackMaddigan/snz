@@ -6,10 +6,14 @@ const dateToNZString = (dateStr) => {
 
 async function fetchComps() {
   try {
+    const urlParams = new URLSearchParams(window.location.search);
+    const dateParam = urlParams.get("date"); // "2025-01-28"
     const now = new Date(
-      new Date().toLocaleString("en-US", { timeZone: "Pacific/Auckland" })
+      dateParam ||
+        new Date().toLocaleString("en-US", {
+          timeZone: "Pacific/Auckland",
+        })
     );
-    now.setDate(now.getDate() - 10);
     now.setHours(0, 0, 0, 0);
 
     const thirtyDaysBeforeNow = new Date(now);
@@ -43,7 +47,6 @@ async function fetchComps() {
         recent.push(comp);
       }
     }
-    console.log(recent);
     upcoming.reverse();
 
     return { upcoming, current, recent };
@@ -55,7 +58,6 @@ async function fetchComps() {
 async function load() {
   const { upcoming, current, recent } = await fetchComps();
 
-  console.log(upcoming, current, recent);
   if (current.length > 0) {
     document.getElementById("current").innerHTML = makeCompTable(
       "Current Competitions",
