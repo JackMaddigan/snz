@@ -4,6 +4,8 @@ const dateToNZString = (dateStr) => {
   });
 };
 
+const openInNew = `<span class="material-icons small-icon">open_in_new</span>`;
+
 async function fetchComps() {
   try {
     const urlParams = new URLSearchParams(window.location.search);
@@ -16,11 +18,8 @@ async function fetchComps() {
     );
     now.setHours(0, 0, 0, 0);
 
-    const thirtyDaysBeforeNow = new Date(now);
-    thirtyDaysBeforeNow.setDate(now.getDate() - 30);
-
     const response = await fetch(
-      "https://raw.githubusercontent.com/robiningelbrecht/wca-rest-api/master/api/competitions/NZ.json"
+      "https://raw.githubusercontent.com/JackMaddigan/snz-comps-updater/main/competitions.json"
     );
 
     const data = await response.json();
@@ -29,24 +28,22 @@ async function fetchComps() {
     const current = [];
     const recent = [];
 
-    for (const comp of data.items) {
+    for (const comp of data) {
       // from, to and thirtyDaysBefore for this comp
       const from = new Date(dateToNZString(comp.date.from));
       from.setHours(0, 0, 0, 0);
       const till = new Date(dateToNZString(comp.date.till));
       till.setHours(0, 0, 0, 0);
 
-      // break if comp is past recent (comps are sorted in API)
-      if (till < thirtyDaysBeforeNow) break;
-
       if (from > now) {
         upcoming.push(comp);
       } else if (from <= now && till >= now) {
         current.push(comp);
-      } else if (till < now && till > thirtyDaysBeforeNow) {
+      } else if (till < now) {
         recent.push(comp);
       }
     }
+
     upcoming.reverse();
 
     return { upcoming, current, recent };
@@ -91,12 +88,15 @@ function makeCompTable(title, comps, showReg = false, showButtonRow = false) {
           comp.id
         }" target="blank">${
       comp.name
-    }</a><br><div class="icon-row">${comp.events
+    } ${openInNew}</a><br><div class="icon-row">${comp.events
       .map((event) => `<span class="cubing-icon event-${event}"></span>`)
       .join(" ")}</div>${regLink}${buttonRow}</td>
-        <td><h4 class="venue-name">${extractVenueName(
-          comp.venue.name
-        )}</h4><br><h5 class="city-name"><i>${comp.city}</i></h5></td>
+        <td><a href="https://www.google.com/maps?q=${
+          comp.venue.coordinates.latitude
+        },${comp.venue.coordinates.longitude}
+" class="venue-name">${extractVenueName(
+      comp.venue.name
+    )} ${openInNew}</a><br><h5 class="city-name"><i>${comp.city}</i></h5></td>
       </tr>`;
   });
 
@@ -116,8 +116,32 @@ function makeCompTable(title, comps, showReg = false, showButtonRow = false) {
 
 function makeRegLink(showRegLink, comp) {
   if (!showRegLink) return "";
-  const text = `REGISTER <span class="material-icons small-icon">open_in_new</span>`;
-  return `<a class="reg-link reg-link" href="https://www.worldcubeassociation.org/competitions/${comp.id}/register" target="blank">${text}</a>`;
+
+  const dateDisplayOptions = {
+    month: "short", // "May"
+    day: "numeric", // "12"
+    hour: "numeric", // "6"
+    minute: "numeric", // "00"
+    hour12: true, // Use 12-hour clock with AM/PM
+  };
+
+  const regOpens = new Date(dateToNZString(comp.registration_open));
+  const regCloses = new Date(dateToNZString(comp.registration_close));
+  const now = Date.now();
+  const regMessage =
+    regOpens > now
+      ? `Registration opens ${regOpens.toLocaleString(
+          "en-US",
+          dateDisplayOptions
+        )} ${openInNew}`
+      : regCloses > now
+      ? `Register now until ${regCloses.toLocaleString(
+          "en-US",
+          dateDisplayOptions
+        )} ${openInNew}`
+      : `Registration is closed`;
+
+  return `<a class="reg-link reg-link" href="https://www.worldcubeassociation.org/competitions/${comp.id}/register" target="blank">${regMessage}</a>`;
 }
 
 function extractVenueName(str) {
