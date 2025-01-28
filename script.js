@@ -128,6 +128,7 @@ function extractVenueName(str) {
 
 function makeButtonRow(showButtonRow, comp) {
   if (!showButtonRow) return "";
+  console.log("YDES");
   const row = `<button class="action-btn" onclick="window.open('https://www.competitiongroups.com/competitions/${comp.id}', '_blank')">Groups</button> <button class="action-btn" onclick="window.open('https://live.worldcubeassociation.org', '_blank')">Live Results</button>`;
   return row;
 }
