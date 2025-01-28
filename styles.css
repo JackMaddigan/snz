@@ -118,3 +118,12 @@ tr:hover {
 .venue-name {
   font-weight: 100;
 }
+
+.action-btn {
+  color: white;
+  background-color: #384aa7;
+  border: none;
+  border-radius: 3px;
+  padding: 8px;
+  cursor: pointer;
+}

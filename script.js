@@ -59,7 +59,9 @@ async function load() {
   if (current.length > 0) {
     document.getElementById("current").innerHTML = makeCompTable(
       "Current Competitions",
-      current
+      current,
+      false,
+      true
     );
   }
   document.getElementById("upcoming").innerHTML = makeCompTable(
@@ -73,12 +75,13 @@ async function load() {
   );
 }
 
-function makeCompTable(title, comps, showReg = false) {
+function makeCompTable(title, comps, showReg = false, showButtonRow = false) {
   const rows = comps.map((comp) => {
     const options = { month: "short", day: "numeric" };
     const from = new Date(comp.date.from).toLocaleDateString("en-US", options);
     const till = new Date(comp.date.till).toLocaleDateString("en-US", options);
     const regLink = makeRegLink(showReg, comp);
+    const buttonRow = makeButtonRow(showButtonRow, comp);
 
     return `<tr>
         <td>${from === till ? from : from + " - " + till}</td>
@@ -88,7 +91,7 @@ function makeCompTable(title, comps, showReg = false) {
       comp.name
     }</a><br><div class="icon-row">${comp.events
       .map((event) => `<span class="cubing-icon event-${event}"></span>`)
-      .join(" ")}</div>${regLink}</td>
+      .join(" ")}</div>${regLink}${buttonRow}</td>
         <td><h4 class="venue-name">${extractVenueName(
           comp.venue.name
         )}</h4><br><h5 class="city-name"><i>${comp.city}</i></h5></td>
@@ -121,4 +124,10 @@ function extractVenueName(str) {
     return name;
   }
   return str;
+}
+
+function makeButtonRow(showButtonRow, comp) {
+  if (!showButtonRow) return "";
+  const row = `<button class="action-btn" onclick="window.open('https://www.competitiongroups.com/competitions/${comp.id}', '_blank')">Groups</button> <button class="action-btn" onclick="window.open('https://live.worldcubeassociation.org', '_blank')">Live Results</button>`;
+  return row;
 }
