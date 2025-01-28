@@ -17,11 +17,15 @@ body {
 }
 
 #footer {
-  background-color: #0e171b;
+  background-color: #292929;
   display: flex;
-  align-items: center;
-  justify-content: center; /* Horizontally center items */
   color: white;
+}
+
+#footer-links {
+  width: 70%;
+  max-width: 800px; /* Optional: Max width to prevent it from becoming too wide */
+  margin: 0 auto; /* Centers the container horizontally */
 }
 
 #footer ul {
@@ -39,14 +43,31 @@ body {
   margin: 0 auto; /* Centers the container horizontally */
 }
 
+.table-container h5,
+h4 {
+  margin: 0;
+}
+
 table {
   border-collapse: collapse;
   margin: 20px 0;
   width: 100%;
 }
 
-th {
+#current th {
+  background-color: #384aa7;
+}
+
+#upcoming th {
   background-color: #4caf50;
+}
+
+#recent th {
+  background-color: #eb5e55;
+}
+
+th {
+  /* background-color: #4caf50; */
   color: white;
   padding: 10px;
   text-align: left;
@@ -69,4 +90,31 @@ tr:nth-child(even) {
 /* Hover effect for rows */
 tr:hover {
   background-color: #ddd;
+}
+
+.icon-row {
+  margin: 8px 0px;
+}
+
+.reg-link {
+  text-decoration: none;
+  font-size: 12px;
+  color: #4caf50;
+}
+
+.comp-name {
+  text-decoration: none;
+  color: black;
+}
+
+.small-icon {
+  font-size: 12px !important;
+}
+
+.city-name {
+  font-weight: 100;
+}
+
+.venue-name {
+  font-weight: 100;
 }

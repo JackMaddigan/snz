@@ -9,7 +9,7 @@ async function fetchComps() {
     const now = new Date(
       new Date().toLocaleString("en-US", { timeZone: "Pacific/Auckland" })
     );
-    now.setDate(now.getDate() - 2);
+    now.setDate(now.getDate() - 10);
     now.setHours(0, 0, 0, 0);
 
     const thirtyDaysBeforeNow = new Date(now);
@@ -44,6 +44,7 @@ async function fetchComps() {
       }
     }
     console.log(recent);
+    upcoming.reverse();
 
     return { upcoming, current, recent };
   } catch (error) {
@@ -63,7 +64,8 @@ async function load() {
   }
   document.getElementById("upcoming").innerHTML = makeCompTable(
     "Upcoming Competitions",
-    upcoming
+    upcoming,
+    true
   );
   document.getElementById("recent").innerHTML = makeCompTable(
     "Recent Competitions",
@@ -71,15 +73,25 @@ async function load() {
   );
 }
 
-function makeCompTable(title, comps) {
+function makeCompTable(title, comps, showReg = false) {
   const rows = comps.map((comp) => {
     const options = { month: "short", day: "numeric" };
     const from = new Date(comp.date.from).toLocaleDateString("en-US", options);
     const till = new Date(comp.date.till).toLocaleDateString("en-US", options);
+    const regLink = makeRegLink(showReg, comp);
+
     return `<tr>
         <td>${from === till ? from : from + " - " + till}</td>
-        <td>${comp.name}</td>
-        <td>${comp.city}</td>
+        <td><a class="comp-name" href="https://www.worldcubeassociation.org/competitions/${
+          comp.id
+        }" target="blank">${
+      comp.name
+    }</a><br><div class="icon-row">${comp.events
+      .map((event) => `<span class="cubing-icon event-${event}"></span>`)
+      .join(" ")}</div>${regLink}</td>
+        <td><h4 class="venue-name">${extractVenueName(
+          comp.venue.name
+        )}</h4><br><h5 class="city-name"><i>${comp.city}</i></h5></td>
       </tr>`;
   });
 
@@ -95,4 +107,18 @@ function makeCompTable(title, comps) {
       ${rows.join("\n")}
     </tbody>
   </table>`;
+}
+
+function makeRegLink(showRegLink, comp) {
+  if (!showRegLink) return "";
+  const text = `REGISTER <span class="material-icons small-icon">open_in_new</span>`;
+  return `<a class="reg-link reg-link" href="https://www.worldcubeassociation.org/competitions/${comp.id}/register" target="blank">${text}</a>`;
+}
+
+function extractVenueName(str) {
+  if (str.includes("]")) {
+    const name = str.split("]")[0].replace(/[\(\)\[\]\{\}]/g, "");
+    return name;
+  }
+  return str;
 }
