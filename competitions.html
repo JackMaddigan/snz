@@ -4,9 +4,15 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./styles.css" />
+    <link rel="stylesheet" href="./comps.css" />
+
     <title>Speedcubing New Zealand</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://cdn.cubing.net/v0/css/@cubing/icons/css"
+    />
     <link
       href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,100..900;1,100..900&display=swap"
       rel="stylesheet"
@@ -20,7 +26,7 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
     />
   </head>
-  <body>
+  <body onload="loadCompetitions()">
     <div class="header">
       <div class="header-row">
         <a href="./index.html">
@@ -37,42 +43,9 @@
       </div>
     </div>
     <div class="main">
-      <div class="top-row">
-        <div class="gallery-outer">
-          <div class="gallery-inner">
-            <img src="./assets/gallery/gallery1.jpg" />
-            <img src="./assets/gallery/gallery2.jpg" />
-            <img src="./assets/gallery/gallery3.jpg" />
-            <img src="./assets/gallery/gallery4.jpg" />
-          </div>
-          <button class="gallery-btn left">&#10216;</button>
-          <button class="gallery-btn right">&#10217;</button>
-        </div>
-        <div class="top-row-about">
-          <h3>
-            <span class="blue-text">Speedcubing New Zealand</span> is a
-            not-for-profit, incorporated society run entirely by volunteers.<br /><br />We
-            support the growth of the speedcubing community in New Zealand by
-            organising events, providing resources, and fostering a positive
-            environment for cubers of all skill levels.
-          </h3>
-          <a href="./about.html">
-            <button class="link-btn">About us</button>
-          </a>
-        </div>
-      </div>
-      <div class="second-row">
-        <h1>Interested in competing?</h1>
-        <h4>
-          Check out our upcoming competitions and frequently asked questions!
-        </h4>
-        <div>
-          <a href="./competitions.html"
-            ><button class="link-btn">Competitions</button></a
-          >
-          <a href="./faq.html"><button class="link-btn">FAQ</button></a>
-        </div>
-      </div>
+      <div id="current-box" class="comp-table-box"></div>
+      <div id="upcoming-box" class="comp-table-box"></div>
+      <div id="recent-box" class="comp-table-box"></div>
     </div>
     <div class="footer">
       <a href="mailto:info@speedcubing.nz" class="icon" title="Email">
@@ -93,7 +66,7 @@
         <i class="fab fa-facebook"></i>
       </a>
     </div>
-    <script src="./js/gallery.js"></script>
+    <script src="./js/competitions.js"></script>
     <script src="./js/nav.js"></script>
   </body>
 </html>
