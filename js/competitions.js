@@ -75,6 +75,8 @@ function makeTable(comps, title, tableClass) {
 }
 
 function makeCompRow(comp, title) {
+  // prettier-ignore
+  const eventOrder = ["333", "222", "444", "555", "666", "777", "333bf", "333fm", "333oh", "clock", "minx", "pyram", "skewb", "sq1", "444bf", "555bf", "333mbf"]
   return `
     <tr>
       <td>
@@ -88,6 +90,7 @@ function makeCompRow(comp, title) {
         }" target="blank">${
     comp.name
   }</a><div class="event-icons-row">${comp.events
+    .sort((a, b) => eventOrder.indexOf(a) - eventOrder.indexOf(b))
     .map((event) => `<span class="cubing-icon event-${event}"></span>`)
     .join("")}</div>${makeAdditionalCompInfo(comp, title)}
       </td>
