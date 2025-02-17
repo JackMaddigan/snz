@@ -25,6 +25,11 @@ form {
   height: 40vh;
 }
 
+#thank-you-message {
+  display: none;
+  text-align: center;
+}
+
 input,
 textarea {
   padding: 10px;
