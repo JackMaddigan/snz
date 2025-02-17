@@ -1,0 +1,50 @@
+.gallery-outer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+  width: 50%;
+  position: relative; /* Make sure buttons are inside the gallery container */
+  height: 100%;
+  margin: auto 16px;
+  overflow: hidden;
+}
+
+.gallery-inner {
+  position: relative;
+  display: flex;
+  height: 100%;
+  transition: transform 0.3s ease;
+}
+
+.gallery-inner img {
+  width: 100%;
+  min-height: 60vh;
+  height: 100%;
+  object-fit: cover;
+  aspect-ratio: 16/9;
+}
+
+.gallery-btn {
+  color: white;
+  position: absolute;
+  font-size: 32px;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.left {
+  left: 10px;
+}
+
+.right {
+  right: 10px;
+}
+
+@media screen and (max-width: 768px) {
+  .gallery-outer {
+    width: 100%;
+    margin: 0;
+  }
+}
