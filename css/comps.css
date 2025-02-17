@@ -94,3 +94,7 @@ h5 {
   padding: 8px;
   cursor: pointer;
 }
+
+.comp-table-box h1 {
+  text-align: center;
+}

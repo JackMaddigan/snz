@@ -1,0 +1,23 @@
+.footer a {
+  text-decoration: none;
+}
+
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 200px;
+  background-color: #1c3144;
+  width: 100%;
+}
+
+.footer .icon {
+  padding: 16px;
+  font-size: 40px;
+  color: #fff;
+  transition: color 0.3s ease;
+}
+
+.footer .icon:hover {
+  color: #93c572;
+}

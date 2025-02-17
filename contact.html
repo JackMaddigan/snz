@@ -3,7 +3,9 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="./css/styles.css" />
+    <link rel="stylesheet" href="./css/global.css" />
+    <link rel="stylesheet" href="./css/header.css" />
+    <link rel="stylesheet" href="./css/footer.css" />
     <link rel="stylesheet" href="./css/contact.css" />
     <link rel="icon" type="image/x-icon" href="./assets/snz-icon.svg" />
     <title>Speedcubing New Zealand</title>
@@ -28,23 +30,24 @@
   </head>
   <body>
     <div class="header">
-      <div class="header-row">
+      <div class="header-items">
         <a href="./index.html">
-          <img id="header-logo" src="./assets/snz-logo-text.png" />
+          <img class="site-logo" src="./assets/snz-logo-text.png" />
         </a>
-        <div id="menu-icon">&#9776;</div>
+        <!-- Hamburger icon -->
+        <div class="menu-icon" id="menu-icon">&#9776;</div>
       </div>
 
       <div class="nav">
-        <a href="./competitions.html">About</a>
+        <a href="./about.html">About</a>
         <a href="./competitions.html">Competitions</a>
-        <a href="./competitions.html">FAQ</a>
-        <a href="./competitions.html">Contact</a>
+        <a href="./faq.html">FAQ</a>
+        <a href="./contact.html">Contact</a>
       </div>
     </div>
     <div class="main">
-      <h1>Contact Us</h1>
       <div class="form-container">
+        <h1>Contact Us</h1>
         <form name="contact" netlify>
           <label for="name">Name</label>
           <input type="text" id="name" name="name" />
@@ -55,7 +58,7 @@
           <label for="message">Message</label>
           <textarea id="message" name="message"></textarea>
 
-          <input type="submit" value="Submit" />
+          <input type="submit" value="Submit" class="btn-link" />
         </form>
       </div>
     </div>
