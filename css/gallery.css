@@ -2,11 +2,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  box-sizing: border-box;
-  width: 50%;
-  position: relative; /* Make sure buttons are inside the gallery container */
-  height: 100%;
-  margin: auto 16px;
+  box-sizing: border-box; /* Prevents padding from affecting total width */
+  position: relative; /* Make sure children are relative to the gallery container which is the buttons*/
   overflow: hidden;
 }
 
@@ -40,11 +37,4 @@
 
 .right {
   right: 10px;
-}
-
-@media screen and (max-width: 768px) {
-  .gallery-outer {
-    width: 100%;
-    margin: 0;
-  }
 }

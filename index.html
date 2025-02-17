@@ -4,8 +4,11 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/x-icon" href="./assets/snz-icon.svg" />
-    <link rel="stylesheet" href="./css/styles.css" />
-    <title>Speedcubing New Zealand</title>
+    <link rel="stylesheet" href="./css/global.css" />
+    <link rel="stylesheet" href="./css/gallery.css" />
+    <link rel="stylesheet" href="./css/main2.css" />
+
+    <title>Home | Speedcubing New Zealand</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -23,11 +26,12 @@
   </head>
   <body>
     <div class="header">
-      <div class="header-row">
+      <div class="header-items">
         <a href="./index.html">
-          <img id="header-logo" src="./assets/snz-logo-text.png" />
+          <img class="site-logo" src="./assets/snz-logo-text.png" />
         </a>
-        <div id="menu-icon">&#9776;</div>
+        <!-- Hamburger icon -->
+        <div class="menu-icon" id="menu-icon">&#9776;</div>
       </div>
 
       <div class="nav">
@@ -37,9 +41,10 @@
         <a href="./competitions.html">Contact</a>
       </div>
     </div>
+
     <div class="main">
-      <div class="top-row">
-        <div class="gallery-outer">
+      <div class="intro-row">
+        <div class="gallery-outer intro-item">
           <div class="gallery-inner">
             <img src="./assets/gallery/gallery1.jpg" />
             <img src="./assets/gallery/gallery2.jpg" />
@@ -49,29 +54,29 @@
           <button class="gallery-btn left">&#10216;</button>
           <button class="gallery-btn right">&#10217;</button>
         </div>
-        <div class="top-row-about">
+        <div class="about-box intro-item">
           <h3>
-            <span class="blue-text">Speedcubing New Zealand</span> is a
+            <span class="highlight-text">Speedcubing New Zealand</span> is a
             not-for-profit, incorporated society run entirely by volunteers.<br /><br />We
             support the growth of the speedcubing community in New Zealand by
             organising events, providing resources, and fostering a positive
             environment for cubers of all skill levels.
           </h3>
           <a href="./about.html">
-            <button class="link-btn">About us</button>
+            <button class="btn-link">About us</button>
           </a>
         </div>
       </div>
-      <div class="second-row">
+      <div class="content-row">
         <h1>Interested in competing?</h1>
         <h4>
           Check out our upcoming competitions and frequently asked questions!
         </h4>
         <div>
           <a href="./competitions.html"
-            ><button class="link-btn">Competitions</button></a
+            ><button class="btn-link">Competitions</button></a
           >
-          <a href="./faq.html"><button class="link-btn">FAQ</button></a>
+          <a href="./faq.html"><button class="btn-link">FAQ</button></a>
         </div>
       </div>
     </div>
