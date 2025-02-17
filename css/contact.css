@@ -21,6 +21,10 @@ form {
   flex-direction: column;
 }
 
+.form-submitted {
+  height: 40vh;
+}
+
 input,
 textarea {
   padding: 10px;
