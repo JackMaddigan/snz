@@ -3,10 +3,10 @@ async function loadCompetitions() {
   const dateParam = urlParams.get("date"); // "2025-01-28"
 
   const response = await fetch(
-    "https://raw.githubusercontent.com/JackMaddigan/snz-comps-updater/main/competitions.json"
+    "https://raw.githubusercontent.com/JackMaddigan/snz-comps-updater/main/data.json"
   );
 
-  const comps = await response.json();
+  const comps = (await response.json()).competitions;
 
   const today = new Date(dateParam || Date.now())
     .toLocaleDateString("en-NZ", {
@@ -120,8 +120,8 @@ function makeAdditionalCompInfo(comp, title) {
 
   if (title === "Upcoming") {
     const now = Date.now();
-    const regOpens = new Date(comp.registration_open);
-    const regCloses = new Date(comp.registration_close);
+    const regOpens = new Date(comp.registration.open);
+    const regCloses = new Date(comp.registration.close);
     const regMessage =
       regCloses < now
         ? `Registration is closed`
